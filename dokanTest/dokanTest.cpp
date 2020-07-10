@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
     dokanOptions.MountPoint = MountPoint;
     dokanOptions.Version = DOKAN_VERSION;
     dokanOptions.ThreadCount = 0;
-    //dokanOptions.UNCName;
+    dokanOptions.UNCName = L"";
     //dokanOptions.Timeout;
     //dokanOptions.AllocationUnitSize;
     dokanOptions.SectorSize;

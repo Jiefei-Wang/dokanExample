@@ -21,12 +21,12 @@ static void myprint(LPCWSTR format, ...) {
 
 
 
-#define MirrorCheckFlag(val, flag)                                             \
+#define CheckFlag(val, flag)                                             \
   if (val & flag) {                                                            \
     myprint(L"\t" L#flag L"\n");                                              \
   }
 
-#define MirrorCheckVarEqual(val, flag)                                             \
+#define CheckVarEqual(val, flag)                                             \
   if (val == flag) {                                                            \
     myprint(L"\t" L#flag L"\n");                                              \
   }
@@ -64,32 +64,32 @@ MirrorCreateFile(LPCWSTR FileName, PDOKAN_IO_SECURITY_CONTEXT SecurityContext,
 
 	myprint(L"\tShareMode = 0x%x\n", ShareAccess);
 
-	MirrorCheckFlag(ShareAccess, FILE_SHARE_READ);
-	MirrorCheckFlag(ShareAccess, FILE_SHARE_WRITE);
-	MirrorCheckFlag(ShareAccess, FILE_SHARE_DELETE);
+	CheckFlag(ShareAccess, FILE_SHARE_READ);
+	CheckFlag(ShareAccess, FILE_SHARE_WRITE);
+	CheckFlag(ShareAccess, FILE_SHARE_DELETE);
 
 	myprint(L"\tDesiredAccess = 0x%x\n", DesiredAccess);
 
-	MirrorCheckFlag(DesiredAccess, GENERIC_READ);
-	MirrorCheckFlag(DesiredAccess, GENERIC_WRITE);
-	MirrorCheckFlag(DesiredAccess, GENERIC_EXECUTE);
+	CheckFlag(DesiredAccess, GENERIC_READ);
+	CheckFlag(DesiredAccess, GENERIC_WRITE);
+	CheckFlag(DesiredAccess, GENERIC_EXECUTE);
 
-	MirrorCheckFlag(DesiredAccess, DELETE);
-	MirrorCheckFlag(DesiredAccess, FILE_READ_DATA);
-	MirrorCheckFlag(DesiredAccess, FILE_READ_ATTRIBUTES);
-	MirrorCheckFlag(DesiredAccess, FILE_READ_EA);
-	MirrorCheckFlag(DesiredAccess, READ_CONTROL);
-	MirrorCheckFlag(DesiredAccess, FILE_WRITE_DATA);
-	MirrorCheckFlag(DesiredAccess, FILE_WRITE_ATTRIBUTES);
-	MirrorCheckFlag(DesiredAccess, FILE_WRITE_EA);
-	MirrorCheckFlag(DesiredAccess, FILE_APPEND_DATA);
-	MirrorCheckFlag(DesiredAccess, WRITE_DAC);
-	MirrorCheckFlag(DesiredAccess, WRITE_OWNER);
-	MirrorCheckFlag(DesiredAccess, SYNCHRONIZE);
-	MirrorCheckFlag(DesiredAccess, FILE_EXECUTE);
-	MirrorCheckFlag(DesiredAccess, STANDARD_RIGHTS_READ);
-	MirrorCheckFlag(DesiredAccess, STANDARD_RIGHTS_WRITE);
-	MirrorCheckFlag(DesiredAccess, STANDARD_RIGHTS_EXECUTE);
+	CheckFlag(DesiredAccess, DELETE);
+	CheckFlag(DesiredAccess, FILE_READ_DATA);
+	CheckFlag(DesiredAccess, FILE_READ_ATTRIBUTES);
+	CheckFlag(DesiredAccess, FILE_READ_EA);
+	CheckFlag(DesiredAccess, READ_CONTROL);
+	CheckFlag(DesiredAccess, FILE_WRITE_DATA);
+	CheckFlag(DesiredAccess, FILE_WRITE_ATTRIBUTES);
+	CheckFlag(DesiredAccess, FILE_WRITE_EA);
+	CheckFlag(DesiredAccess, FILE_APPEND_DATA);
+	CheckFlag(DesiredAccess, WRITE_DAC);
+	CheckFlag(DesiredAccess, WRITE_OWNER);
+	CheckFlag(DesiredAccess, SYNCHRONIZE);
+	CheckFlag(DesiredAccess, FILE_EXECUTE);
+	CheckFlag(DesiredAccess, STANDARD_RIGHTS_READ);
+	CheckFlag(DesiredAccess, STANDARD_RIGHTS_WRITE);
+	CheckFlag(DesiredAccess, STANDARD_RIGHTS_EXECUTE);
 
 	// When filePath is a directory, needs to change the flag so that the file can
 	// be opened.
@@ -119,40 +119,40 @@ MirrorCreateFile(LPCWSTR FileName, PDOKAN_IO_SECURITY_CONTEXT SecurityContext,
 
 	myprint(L"\tFlagsAndAttributes = 0x%x\n", fileAttributesAndFlags);
 
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_ARCHIVE);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_COMPRESSED);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_DEVICE);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_DIRECTORY);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_ENCRYPTED);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_HIDDEN);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_INTEGRITY_STREAM);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_NORMAL);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_NOT_CONTENT_INDEXED);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_NO_SCRUB_DATA);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_OFFLINE);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_READONLY);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_REPARSE_POINT);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_SPARSE_FILE);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_SYSTEM);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_TEMPORARY);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_VIRTUAL);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_WRITE_THROUGH);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_OVERLAPPED);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_NO_BUFFERING);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_RANDOM_ACCESS);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_SEQUENTIAL_SCAN);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_DELETE_ON_CLOSE);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_BACKUP_SEMANTICS);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_POSIX_SEMANTICS);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_OPEN_REPARSE_POINT);
-	MirrorCheckFlag(fileAttributesAndFlags, FILE_FLAG_OPEN_NO_RECALL);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_ANONYMOUS);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_IDENTIFICATION);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_IMPERSONATION);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_DELEGATION);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_CONTEXT_TRACKING);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_EFFECTIVE_ONLY);
-	MirrorCheckFlag(fileAttributesAndFlags, SECURITY_SQOS_PRESENT);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_ARCHIVE);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_COMPRESSED);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_DEVICE);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_DIRECTORY);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_ENCRYPTED);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_HIDDEN);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_INTEGRITY_STREAM);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_NORMAL);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_NOT_CONTENT_INDEXED);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_NO_SCRUB_DATA);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_OFFLINE);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_READONLY);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_REPARSE_POINT);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_SPARSE_FILE);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_SYSTEM);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_TEMPORARY);
+	CheckFlag(fileAttributesAndFlags, FILE_ATTRIBUTE_VIRTUAL);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_WRITE_THROUGH);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_OVERLAPPED);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_NO_BUFFERING);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_RANDOM_ACCESS);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_SEQUENTIAL_SCAN);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_DELETE_ON_CLOSE);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_BACKUP_SEMANTICS);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_POSIX_SEMANTICS);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_OPEN_REPARSE_POINT);
+	CheckFlag(fileAttributesAndFlags, FILE_FLAG_OPEN_NO_RECALL);
+	CheckFlag(fileAttributesAndFlags, SECURITY_ANONYMOUS);
+	CheckFlag(fileAttributesAndFlags, SECURITY_IDENTIFICATION);
+	CheckFlag(fileAttributesAndFlags, SECURITY_IMPERSONATION);
+	CheckFlag(fileAttributesAndFlags, SECURITY_DELEGATION);
+	CheckFlag(fileAttributesAndFlags, SECURITY_CONTEXT_TRACKING);
+	CheckFlag(fileAttributesAndFlags, SECURITY_EFFECTIVE_ONLY);
+	CheckFlag(fileAttributesAndFlags, SECURITY_SQOS_PRESENT);
 
 
 
@@ -210,11 +210,11 @@ MirrorCreateFile(LPCWSTR FileName, PDOKAN_IO_SECURITY_CONTEXT SecurityContext,
 		}
 	}
 	myprint(L"status code:\n");
-	MirrorCheckVarEqual(status, ERROR_ALREADY_EXISTS);
-	MirrorCheckVarEqual(status, STATUS_SUCCESS);
-	MirrorCheckVarEqual(status, ERROR_FILE_EXISTS);
-	MirrorCheckVarEqual(status, STATUS_ACCESS_DENIED);
-	MirrorCheckVarEqual(status, ERROR_FILE_NOT_FOUND);
+	CheckVarEqual(status, ERROR_ALREADY_EXISTS);
+	CheckVarEqual(status, STATUS_SUCCESS);
+	CheckVarEqual(status, ERROR_FILE_EXISTS);
+	CheckVarEqual(status, STATUS_ACCESS_DENIED);
+	CheckVarEqual(status, ERROR_FILE_NOT_FOUND);
 
 	myprint(L"end of createFile function\n");
 	return status;
