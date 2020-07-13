@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dokanTest.cpp">
+    <ClCompile Include="operations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="operations.cpp">
+    <ClCompile Include="dokanExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
